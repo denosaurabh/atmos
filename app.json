@@ -1,0 +1,43 @@
+{
+  "name": "Course App",
+  "description": "Biggest Marketplace for online Course and Education",
+  "keywords": ["courses", "programming", "marketplace", "education"],
+  "success_url": "/",
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "Hobby"
+    }
+  },
+
+  "env": {
+    "NODE_ENV": {
+      "value": "production",
+      "required": true
+    },
+    "URL": {
+      "value": "http://localhost:3000",
+      "required": true
+    },
+    "SUPABASE_URL": {
+      "value": "Supabase Project URL",
+      "required": true
+    },
+    "SUPABASE_ANON_KEY_PUBLIC": {
+      "value": "Supabase Project PUBLIC Key",
+      "required": true
+    },
+    "SUPABASE_ANON_KEY_PRIVATE": {
+      "value": "Supabase Project PRIVATE Key",
+      "required": true
+    },
+    "REDIS_HOST": {
+      "value": "Redis Server HOST",
+      "required": false
+    },
+    "REDIS_PORT": {
+      "value": "Redis Server POST",
+      "required": false
+    }
+  }
+}

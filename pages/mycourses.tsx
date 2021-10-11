@@ -1,0 +1,47 @@
+import { useEffect, useState } from 'react';
+import { Wrap } from '@chakra-ui/react';
+
+import Page from '@layouts/page';
+
+import { MyCourseBoxSkeleton } from '@skeletons';
+import { PageHeading, MyCourseBox } from '@components';
+
+import { useAuth } from '@contexts/useAuth';
+import { supabase } from '@supabase/client';
+
+const MyCourses = () => {
+  const { user, userLoaded } = useAuth();
+  const [{ data, loading: dataLoading }, setData] = useState({
+    data: null,
+    loading: true,
+  });
+
+  useEffect(async () => {
+    if (!userLoaded && user) {
+      const { boughtCourses } = user;
+
+      const boughtCoursesPromise = boughtCourses.map((id) =>
+        db.collection('courses').doc(id).get()
+      );
+
+      const boughtCoursesDocs = await Promise.all(boughtCoursesPromise);
+      const boughtCoursesData = boughtCoursesDocs.map((doc) => doc.data());
+
+      setData({ data: boughtCoursesData, loading: false });
+    }
+  }, [user, userLoaded]);
+
+  return (
+    <Page>
+      <PageHeading text="My" title="Courses" />
+
+      <Wrap direction="column" spacing={8}>
+        {!dataLoading
+          ? data.map((data, i) => <MyCourseBox {...data} key={i} />)
+          : [...Array(10)].map((_, i) => <MyCourseBoxSkeleton key={i} />)}
+      </Wrap>
+    </Page>
+  );
+};
+
+export default MyCourses;
