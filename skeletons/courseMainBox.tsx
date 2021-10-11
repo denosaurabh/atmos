@@ -1,4 +1,4 @@
-import { Grid, Skeleton, SkeletonText } from '@chakra-ui/react';
+import { Skeleton, SkeletonText } from '@chakra-ui/react';
 import { UserSmallSkeleton } from '@skeletons';
 
 const CourseMainBoxSkeleton = () => {
