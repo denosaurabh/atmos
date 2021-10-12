@@ -1,11 +1,10 @@
 import { PageHeading, MenuTab } from '@components';
-import Page from '@layouts/page';
 
 import { Profile } from '@shared/settings';
 
 const Settings = () => {
   return (
-    <Page>
+    <>
       <PageHeading text="Your" title="Settings" />
 
       <MenuTab
@@ -18,7 +17,7 @@ const Settings = () => {
           Settings: <p>4</p>,
         }}
       />
-    </Page>
+    </>
   );
 };
 

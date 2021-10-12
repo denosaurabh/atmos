@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { inject, observer } from 'mobx-react';
 
 import {
   Button,
@@ -164,4 +163,4 @@ const SignUp = () => {
   );
 };
 
-export default inject('auth')(observer(SignUp));
+export default SignUp;

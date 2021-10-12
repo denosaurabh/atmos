@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import {
   Button,
   Flex,
@@ -7,6 +8,7 @@ import {
   Avatar,
   Tag,
 } from '@chakra-ui/react';
+
 import { LeftArrow } from '@components/icons';
 import { TopLeftDataI } from '@lib/pages/course';
 
@@ -16,6 +18,7 @@ const TopLeft = ({
   learners_number,
   subDescription,
 }: TopLeftDataI) => {
+  const router = useRouter();
   const { avatar = 'avatar', fullName = 'Name' } = instructor;
 
   return (
@@ -24,6 +27,7 @@ const TopLeft = ({
         size="sm"
         variant="light"
         leftIcon={<LeftArrow width={4} heihgt={4} />}
+        onClick={() => router.back()}
       >
         Go Back
       </Button>

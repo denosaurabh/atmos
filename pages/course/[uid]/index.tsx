@@ -1,18 +1,23 @@
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+
 import { Flex, Divider } from '@chakra-ui/react';
-import { GetServerSideProps } from 'next';
 import useSWR from 'swr';
 
-import Page from '@layouts/page';
-import { TopLeft, TopRight, BottomContent } from '@shared/course';
+import { TopLeft } from '@shared/course';
 
-import { apiClient } from '@utils';
+const TopRight = dynamic(() => import('@shared/course/topRight'));
+const BottomContent = dynamic(() => import('@shared/course/bottomContent'));
 
-const Course = ({ course, courseId }) => {
-  const { data } = useSWR(`/api/courses/${courseId}`, { initialData: course });
+const Course = ({ course }) => {
+  const router = useRouter();
+  const { data } = useSWR(`/api/courses/${router.query.uid}`, {
+    initialData: course,
+  });
 
   if (!data) return <h1>Loading....</h1>;
 
-  console.log(data.data);
+  console.log(data, data.data, 'course data');
 
   const {
     title,
@@ -26,7 +31,7 @@ const Course = ({ course, courseId }) => {
   } = data.data;
 
   return (
-    <Page>
+    <>
       <Flex flexDirection={{ base: 'column', lg: 'row' }}>
         <TopLeft
           title={title}
@@ -48,39 +53,39 @@ const Course = ({ course, courseId }) => {
         inside={inside}
         requirnments={requirnments}
       />
-    </Page>
+    </>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  console.log(context.query);
-  const courseId = context.query.uid;
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   console.log(context.query);
+//   const courseId = context.query.uid;
 
-  if (!courseId) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
+//   if (!courseId) {
+//     return {
+//       redirect: {
+//         destination: '/',
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  const res = await apiClient.get(`/courses/${courseId}`);
-  console.log(res);
+//   const res = await apiClient.get(`/courses/${courseId}`);
+//   console.log(res);
 
-  if (!res.data) {
-    return {
-      notFound: true,
-      courseId: context.query.uid,
-    };
-  }
+//   if (!res.data) {
+//     return {
+//       notFound: true,
+//       courseId: context.query.uid,
+//     };
+//   }
 
-  return {
-    props: {
-      course: res.data,
-      courseId: context.query.uid,
-    },
-  };
-};
+//   return {
+//     props: {
+//       course: res.data,
+//       courseId: context.query.uid,
+//     },
+//   };
+// };
 
 export default Course;

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Flex, Portal, useColorModeValue } from '@chakra-ui/react';
 
 import {
@@ -108,4 +109,16 @@ const Sidebar = ({
   );
 };
 
-export default Sidebar;
+export default memo(Sidebar, (prevProps, nextProps) => {
+  return (
+    prevProps.breakpointForResSidebar === nextProps.breakpointForResSidebar &&
+    prevProps.extendedWidth === nextProps.extendedWidth &&
+    prevProps.smallWidth === nextProps.smallWidth &&
+    prevProps.courseLearningWidth === nextProps.courseLearningWidth &&
+    // ----
+    prevProps.ui.sidebarShow === nextProps.ui.sidebarShow &&
+    prevProps.ui.sidebarExtended === nextProps.ui.sidebarExtended &&
+    prevProps.ui.showCourseLearningSidebar ===
+      nextProps.ui.showCourseLearningSidebar
+  );
+});

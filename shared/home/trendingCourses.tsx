@@ -4,6 +4,7 @@ import useSWR from 'swr';
 
 import { CourseBox } from '@components';
 import { CourseBoxSkeleton } from '@skeletons';
+import { CourseBoxProvider } from '@contexts/components/courseBox';
 
 const TrendingCourses = () => {
   const { data } = useSWR('/api/courses');
@@ -35,7 +36,11 @@ const TrendingCourses = () => {
       </Text>
 
       {data
-        ? data.data.map((data, i) => <CourseBox {...data} key={i} />)
+        ? data.data.map((data, i) => (
+            <CourseBoxProvider courseId={data.id} key={i}>
+              <CourseBox {...data} key={i} />
+            </CourseBoxProvider>
+          ))
         : [...Array(5)].map((_, i) => <CourseBoxSkeleton key={i} />)}
 
       <Flex justifyContent="space-between" mt={8}>

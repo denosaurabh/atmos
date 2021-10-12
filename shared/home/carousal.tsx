@@ -38,17 +38,30 @@ const Carousal = () => {
 
   return (
     <SnapList direction="horizontal">
-      <CourseMainBoxskeleton />
-      {data
-        ? [...Array(6)].map((_, i) => (
+      {/* <CourseMainBoxskeleton /> */}
+      {[...Array(6)].map((_, i) => {
+        if (data) {
+          return (
             <SnapItem
+              key={i}
               margin={{ left: '15px', right: '15px' }}
               snapAlign="center"
             >
               <CourseMainBox key={i} {...data.data[0]} />
             </SnapItem>
-          ))
-        : [...Array(6)].map(() => <CourseMainBoxskeleton />)}
+          );
+        } else {
+          return (
+            <SnapItem
+              key={i}
+              margin={{ left: '15px', right: '15px' }}
+              snapAlign="center"
+            >
+              <CourseMainBoxskeleton />
+            </SnapItem>
+          );
+        }
+      })}
 
       {/* {courses.map((data, i) => (
         <SnapItem margin={{ left: '15px', right: '15px' }} snapAlign="center">

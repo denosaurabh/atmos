@@ -1,8 +1,16 @@
-import { useEffect } from 'react';
-import { Flex, Box, useColorModeValue } from '@chakra-ui/react';
-import { Header, Sidebar } from '@components/index';
+import { memo, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useTheme, useMediaQuery } from '@chakra-ui/react';
+import {
+  Flex,
+  Box,
+  useColorModeValue,
+  useTheme,
+  useMediaQuery,
+} from '@chakra-ui/react';
+
+import Header from '@components/header';
+import Sidebar from '@components/sidebar';
+
 import { PageI } from '@lib/layouts';
 import { useUI } from '@contexts/useUI';
 
@@ -87,4 +95,9 @@ const Page = ({ children, mainContentPadding }: PageI) => {
   );
 };
 
-export default Page;
+export default memo(Page, (prevProps, nextProps) => {
+  return (
+    prevProps.children === nextProps.children &&
+    prevProps.mainContentPadding === nextProps.mainContentPadding
+  );
+});

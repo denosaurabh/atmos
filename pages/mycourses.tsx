@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Wrap } from '@chakra-ui/react';
 
-import Page from '@layouts/page';
-
 import { MyCourseBoxSkeleton } from '@skeletons';
 import { PageHeading, MyCourseBox } from '@components';
 
@@ -32,7 +30,7 @@ const MyCourses = () => {
   }, [user, userLoaded]);
 
   return (
-    <Page>
+    <>
       <PageHeading text="My" title="Courses" />
 
       <Wrap direction="column" spacing={8}>
@@ -40,7 +38,7 @@ const MyCourses = () => {
           ? data.map((data, i) => <MyCourseBox {...data} key={i} />)
           : [...Array(10)].map((_, i) => <MyCourseBoxSkeleton key={i} />)}
       </Wrap>
-    </Page>
+    </>
   );
 };
 

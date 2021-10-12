@@ -5,10 +5,18 @@ import { supabase } from '@supabase/client';
 
 import { useAuth } from '@contexts/useAuth';
 
-const CourseBoxContext = createContext({
+interface CourseBoxContextI {
+  onWishlistClick: () => void;
+  onShareClick: () => void;
+  setIsHovered: (bool: boolean) => void;
+  isWishlisted: boolean;
+  isHovered: boolean;
+}
+
+const CourseBoxContext = createContext<CourseBoxContextI>({
   onWishlistClick: () => {},
   onShareClick: () => {},
-  setHover: () => {},
+  setIsHovered: () => {},
   isWishlisted: false,
   isHovered: false,
 });
@@ -16,42 +24,58 @@ const CourseBoxContext = createContext({
 export const CourseBoxProvider = ({ courseId, children }) => {
   const { user, userLoaded } = useAuth();
 
-  const [hovered, setHover] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
-  const [route, setRoute] = useState(false);
+  const [route, setRoute] = useState('');
 
   const { onCopy } = useClipboard(route);
   const toast = useToast();
 
   const onWishlistClick = async () => {
-    const updatedWishlist = !isWishlisted
-      ? supabase.firestore.FieldValue.arrayUnion(courseId)
-      : supabase.firestore.FieldValue.arrayRemove(courseId);
+    if (userLoaded && !user) {
+      toast({
+        position: 'top',
+        title: `Please Login/Signup to add this course in your wishlist`,
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+      });
+
+      return;
+    }
+
+    // const updatedWishlist = !isWishlisted
+    //   ? supabase.firestore.FieldValue.arrayUnion(courseId)
+    //   : supabase.firestore.FieldValue.arrayRemove(courseId);
+
+    let updatedWishlist = [...user?.wishlist];
+
+    if (user?.wishlist.includes(courseId)) {
+      updatedWishlist = updatedWishlist.filter((id) => id !== courseId);
+    } else {
+      updatedWishlist = [...updatedWishlist, courseId];
+    }
 
     try {
-      if (!userLoaded && user) {
-        await supabase.db
-          .collection('users')
-          .doc(user.uid)
-          .update({ wishlist: updatedWishlist }, { merge: true });
+      const { data, error } = await supabase
+        .from('users')
+        .update({ wishlist: updatedWishlist })
+        .match({ id: user.id });
 
-        toast({
-          position: 'top',
-          title: `Course ${
-            !isWishlisted ? 'Added to' : 'Removed from'
-          } Wishlist!`,
-          status: !isWishlisted ? 'success' : 'warning',
-          duration: 4000,
-          isClosable: true,
-        });
-      } else {
-        toast({
-          position: 'top',
-          title: `Please Login/Signup to add this course in your wishlist`,
-          status: 'error',
-          duration: 4000,
-          isClosable: true,
-        });
+      console.log(data, error);
+
+      toast({
+        position: 'top',
+        title: `Course ${
+          !isWishlisted ? 'Added to' : 'Removed from'
+        } Wishlist!`,
+        status: !isWishlisted ? 'success' : 'warning',
+        duration: 4000,
+        isClosable: true,
+      });
+
+      if (!error) {
+        setIsWishlisted(!isWishlisted);
       }
     } catch (err) {
       console.log(err);
@@ -78,12 +102,16 @@ export const CourseBoxProvider = ({ courseId, children }) => {
     });
   };
 
+  const setHover = (boolean: boolean) => {
+    setHovered(boolean);
+  };
+
   useEffect(() => {
     if (window) setRoute(`${window.location.href}course/${courseId}`);
   }, []);
 
   useEffect(() => {
-    if (!userLoaded && user) {
+    if (userLoaded && user) {
       setIsWishlisted(user.wishlist.includes(courseId));
     } else {
       setIsWishlisted(false);
@@ -95,8 +123,8 @@ export const CourseBoxProvider = ({ courseId, children }) => {
       value={{
         onShareClick,
         onWishlistClick,
-        hovered,
-        setHover,
+        isHovered: hovered,
+        setIsHovered: setHover,
         isWishlisted,
       }}
     >

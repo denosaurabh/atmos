@@ -8,6 +8,8 @@ const fetchTopDataCourse = async (
   res: NextApiResponse
 ) => {
   const { id: courseId } = req.query;
+  console.log(courseId, 'course api');
+
   invariant(courseId, 'Course ID is required!');
 
   const { data, error } = await supabase
@@ -32,6 +34,8 @@ const fetchTopDataCourse = async (
     )
     .eq('id', courseId)
     .single();
+
+  console.log(data, error, 'course api');
 
   apiRes(res, data, error);
 };

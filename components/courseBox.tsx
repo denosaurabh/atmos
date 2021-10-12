@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {
   Flex,
   Tag,
@@ -31,13 +32,18 @@ const CourseBox = ({
   const {
     onShareClick,
     onWishlistClick,
-    setHover,
-    hovered,
+    setIsHovered,
+    isHovered,
     isWishlisted,
   } = useCourseBox();
 
-  const onHoverStart = () => setHover(true);
-  const onHoverEnd = () => setHover(false);
+  const onHoverStart = () => {
+    setIsHovered(true);
+  };
+
+  const onHoverEnd = () => {
+    setIsHovered(false);
+  };
 
   return (
     <Flex
@@ -55,18 +61,20 @@ const CourseBox = ({
       onTouchStart={onHoverStart}
       onTouchCancel={onHoverEnd}
     >
-      <Image
-        width={{ base: '15%', sl: '35%' }}
-        objectFit="cover"
-        src={image}
-        rounded="2xl"
-      />
+      <Link href={`/course/${id}`}>
+        <Image
+          width={{ base: '15%', sl: '35%' }}
+          objectFit="cover"
+          src={image}
+          rounded="2xl"
+        />
+      </Link>
 
       <Flex marginLeft={6} flexDirection="column" paddingBottom={1}>
         <Wrap spacing={4} mb={3}>
           {tags.map((value, i) => (
             <Tag variant="1001" key={i}>
-              Quality
+              {value}
             </Tag>
           ))}
         </Wrap>
@@ -110,7 +118,7 @@ const CourseBox = ({
       </Flex>
       <Flex
         display={{ base: 'none', md: 'flex' }}
-        opacity={hovered ? 1 : 0}
+        opacity={isHovered ? 1 : 0}
         marginLeft="auto"
         paddingX={2}
         paddingY={2}

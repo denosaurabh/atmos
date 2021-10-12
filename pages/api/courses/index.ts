@@ -7,9 +7,11 @@ const fetchCourses = async (_: NextApiRequest, res: NextApiResponse) => {
     .from('courses')
     .select(
       `
+      id,
       title,
       image,
       tags,
+      learners_number,
       instructor (
           fullName,
           jobTitle,

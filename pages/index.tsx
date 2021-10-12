@@ -1,18 +1,17 @@
+import dynamic from 'next/dynamic';
 import { Flex } from '@chakra-ui/react';
 
-import Page from '@layouts/page';
 import { PageHeading } from '@components';
 
-import {
-  AllCategories,
-  Carousal,
-  TrendingCourses,
-  TopInstructors,
-} from '@shared/home';
+import Carousal from '@shared/home/carousal';
+
+const TrendingCourses = dynamic(() => import('@shared/home/trendingCourses'));
+const AllCategories = dynamic(() => import('@shared/home/allCategories'));
+const TopInstructors = dynamic(() => import('@shared/home/topInstructors'));
 
 export default function Home() {
   return (
-    <Page>
+    <>
       <PageHeading text="Courses" title="Trending" />
 
       <Carousal />
@@ -25,6 +24,6 @@ export default function Home() {
           <AllCategories />
         </Flex>
       </Flex>
-    </Page>
+    </>
   );
 }

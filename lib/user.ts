@@ -16,5 +16,5 @@ export interface UserI {
   jobTitle: string;
   avatar: string;
   verified: boolean;
-  wishlist?: string[];
+  wishlist: string[];
 }

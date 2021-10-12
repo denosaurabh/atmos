@@ -1,5 +1,8 @@
-import { Skeleton, SkeletonText } from '@chakra-ui/react';
-import { UserSmallSkeleton } from '@skeletons';
+import {
+  Skeleton,
+  // SkeletonText
+} from '@chakra-ui/react';
+// import { UserSmallSkeleton } from '@skeletons';
 
 const CourseMainBoxSkeleton = () => {
   return (
@@ -15,8 +18,9 @@ const CourseMainBoxSkeleton = () => {
       alignItems="flex-end"
       padding={{ base: 6, sl: 12 }}
     >
-      <SkeletonText>UI Designing</SkeletonText>
-      <UserSmallSkeleton />
+      {/* <SkeletonText>UI Designing Designingggggggggggggggz</SkeletonText> */}
+      {/* <Skeleton>UI Designing Designingggggggggggggggz</Skeleton> */}
+      {/* <UserSmallSkeleton /> */}
     </Skeleton>
   );
 };

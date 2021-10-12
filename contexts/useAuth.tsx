@@ -1,8 +1,9 @@
 import { useEffect, useState, createContext, useContext } from 'react';
 import { supabase } from '@supabase/client';
-import { User, Session } from '@supabase/supabase-js';
+import { User, Session, AuthChangeEvent } from '@supabase/supabase-js';
 
 import { UserI } from '@lib/user';
+import axios from 'axios';
 
 interface useAuthI {
   session: Session | null;
@@ -34,15 +35,33 @@ export const UserContextProvider = (props) => {
   const [session, setSession] = useState<Session | null>(null);
   const [userLoaded, setUserLoaded] = useState<Boolean>(false);
 
+  const setServerSession = async (
+    event: AuthChangeEvent,
+    session: Session | null
+  ) => {
+    await fetch('/api/auth', {
+      method: 'POST',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      credentials: 'same-origin',
+      body: JSON.stringify({ event, session }),
+    });
+  };
+
   useEffect(() => {
     const session = supabase.auth.session();
     setSession(session);
     setAuthUser(session?.user ?? null);
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      async (_, session) => {
+      async (event, session) => {
         setSession(session);
         setAuthUser(session?.user ?? null);
+
+        await setServerSession(event, session);
+
+        //  headers: new Headers({ 'Content-Type': 'application/json' }),
+        // credentials: 'same-origin',
+        // body: JSON.stringify({ event, session }),
       }
     );
 
@@ -105,17 +124,20 @@ export const UserContextProvider = (props) => {
     }
   }, [authUser]);
 
+  const signIn = (options) => supabase.auth.signIn(options);
+  const signOut = () => {
+    setUser(null);
+    return supabase.auth.signOut();
+  };
+
   const value = {
     session,
     authUser,
     user,
     userLoaded,
-    signIn: (options) => supabase.auth.signIn(options),
+    signIn,
     signUpWithEmailAndPassword,
-    signOut: () => {
-      setUser(null);
-      return supabase.auth.signOut();
-    },
+    signOut,
   };
 
   return <UserContext.Provider value={value} {...props} />;

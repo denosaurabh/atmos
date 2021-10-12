@@ -34,8 +34,8 @@ const CourseMainBox = ({
       padding={{ base: 6, sl: 12 }}
     >
       <Box>
-        {tags?.map((_, i) => (
-          <Tag key={i}>Best Selling</Tag>
+        {tags?.map((tag, i) => (
+          <Tag key={i}>{tag}</Tag>
         ))}
 
         <Heading fontSize="3xl" fontWeight="medium" color="white">

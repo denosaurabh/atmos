@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
   Flex,
   CloseButton,
@@ -59,4 +60,10 @@ const Header = ({ breakpointForResSidebar, paddingLeft, ui }: HeaderI) => {
   );
 };
 
-export default Header;
+export default memo(
+  Header,
+  (prev, next) =>
+    prev.breakpointForResSidebar === next.breakpointForResSidebar &&
+    prev.paddingLeft === next.paddingLeft &&
+    prev.ui === next.ui
+);

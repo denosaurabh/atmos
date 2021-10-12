@@ -1,7 +1,6 @@
 import { RefObject, useRef, useState } from 'react';
 import Link from 'next/link';
 import { supabase } from '@supabase/client';
-import { inject, observer } from 'mobx-react';
 
 import {
   AlertDialog,
@@ -51,7 +50,7 @@ const RightBox: React.FC = () => {
         Become an Instructor
       </Text>
 
-      {!user ? (          
+      {!user ? (
         <Link href="/login">
           <Button size="sm">Sign Up / Log In</Button>
         </Link>
@@ -74,7 +73,11 @@ const BellMenu = () => {
         <Bell />
       </MenuButton>
       <MenuList>
-        <Text fontWeight="medium" paddingLeft={4} marginBottom={4}>
+        <Text
+          fontWeight="medium"
+          paddingLeft={4}
+          marginBottom={4}
+        >
           Recent Notifications
         </Text>
         <MenuItem>Profile</MenuItem>
@@ -105,10 +108,9 @@ const AvatarMenu = ({ avatar }: { avatar: string }) => {
   return (
     <>
       <Menu variant="profile" isLazy>
-        <MenuButton as={Avatar} cursor="pointer">
+        <MenuButton cursor="pointer">
           <Avatar
             src={avatar || '/assets/avatars/human.png'}
-            // src={avatar}
             userSelect="none"
           />
         </MenuButton>
