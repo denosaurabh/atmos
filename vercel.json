@@ -1,6 +1,6 @@
 {
   "name": "Course App",
-  
-  "public": "false",
+
+  "public": false,
   "trailingSlash": false
 }
