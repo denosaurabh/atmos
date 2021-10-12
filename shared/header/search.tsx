@@ -1,5 +1,5 @@
 import { Flex, Input, useColorModeValue } from '@chakra-ui/react';
-import { Search as SearchSvg } from '@components/icons';
+import SearchSvg from '@icons/search';
 
 const Search = () => {
   const backgroundColor = useColorModeValue('grey-s-light', 'white-100');

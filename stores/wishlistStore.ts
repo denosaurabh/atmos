@@ -1,40 +1,40 @@
-import { observable, action, makeObservable } from "mobx";
-import BaseStore from "@stores/baseStore";
-import { apiClient } from "@utils";
-import RootStore from "./rootStore";
+// import { observable, action, makeObservable } from "mobx";
+// import BaseStore from "@stores/baseStore";
+// import { apiClient } from "@utils";
+// import RootStore from "./rootStore";
 
-export default class UserWishlistStore extends BaseStore {
-  @observable wishlistCourses: object[] | null = null;
-  @observable wishlistCoursesLoading: boolean = false;
-  @observable wishlistCoursesError: Error | string | null = null;
+// export default class UserWishlistStore extends BaseStore {
+//   @observable wishlistCourses: object[] | null = null;
+//   @observable wishlistCoursesLoading: boolean = false;
+//   @observable wishlistCoursesError: Error | string | null = null;
 
-  rootStore: RootStore;
+//   rootStore: RootStore;
 
-  constructor(rootStore: RootStore) {
-    super();
+//   constructor(rootStore: RootStore) {
+//     super();
 
-    this.rootStore = rootStore;
+//     this.rootStore = rootStore;
 
-    makeObservable(this);
-    this.fetch = this.fetch.bind(this);
-  }
+//     makeObservable(this);
+//     this.fetch = this.fetch.bind(this);
+//   }
 
-  @action
-  fetchWishlistCourses = async () => {
-    if (!this.rootStore.auth.authUser) return;
+//   @action
+//   fetchWishlistCourses = async () => {
+//     if (!this.rootStore.auth.authUser) return;
 
-    this.wishlistCoursesLoading = true;
+//     this.wishlistCoursesLoading = true;
 
-    const userWishlistCoursesIdsArr = this.rootStore.auth.authUser.wishlist;
+//     const userWishlistCoursesIdsArr = this.rootStore.auth.authUser.wishlist;
 
-    const wishlistCoursesArrPromise = userWishlistCoursesIdsArr.map((id: any) =>
-      apiClient.get(`/courses/${id}/box`)
-    );
+//     const wishlistCoursesArrPromise = userWishlistCoursesIdsArr.map((id: any) =>
+//       apiClient.get(`/courses/${id}/box`)
+//     );
 
-    const wishlistCourses: object[] = await Promise.all(
-      wishlistCoursesArrPromise
-    );
+//     const wishlistCourses: object[] = await Promise.all(
+//       wishlistCoursesArrPromise
+//     );
 
-    this.wishlistCourses = wishlistCourses;
-  };
-}
+//     this.wishlistCourses = wishlistCourses;
+//   };
+// }

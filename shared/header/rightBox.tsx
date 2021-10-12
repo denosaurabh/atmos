@@ -19,14 +19,12 @@ import {
   Button,
 } from '@chakra-ui/react';
 
-import {
-  Message,
-  Bell,
-  Profile,
-  Video,
-  Logout,
-  Settings,
-} from '@components/icons';
+import Message from '@icons/message';
+import Bell from '@icons/bell';
+import Profile from '@icons/profile';
+import Video from '@icons/video';
+import Logout from '@icons/logout';
+import Settings from '@icons/settings';
 
 import { useAuth } from '@contexts/useAuth';
 
@@ -73,11 +71,7 @@ const BellMenu = () => {
         <Bell />
       </MenuButton>
       <MenuList>
-        <Text
-          fontWeight="medium"
-          paddingLeft={4}
-          marginBottom={4}
-        >
+        <Text fontWeight="medium" paddingLeft={4} marginBottom={4}>
           Recent Notifications
         </Text>
         <MenuItem>Profile</MenuItem>

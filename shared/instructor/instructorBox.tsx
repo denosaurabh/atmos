@@ -7,7 +7,9 @@ import {
   Wrap,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Message, Profile } from '@components/icons';
+
+import Message from '@icons/message';
+import Profile from '@icons/profile';
 
 import { InstructorBoxI } from '@lib/pages/instructor';
 

@@ -1,19 +1,17 @@
 import { Wrap, Flex, Text, Image, Avatar } from '@chakra-ui/react';
 
-import {
-  Home,
-  Star,
-  Video,
-  Bag,
-  Chat,
-  Settings,
-  Message,
-  ChatFill,
-  Folder,
-  List,
-  Bookmark,
-  Trending,
-} from '@components/icons';
+import Home from '@icons/home';
+import Star from '@icons/star';
+import Video from '@icons/video';
+import Bag from '@icons/bag';
+import Chat from '@icons/chat';
+import Settings from '@icons/settings';
+import Message from '@icons/message';
+import ChatFill from '@icons/chatfill';
+import Folder from '@icons/folder';
+import List from '@icons/list';
+import Bookmark from '@icons/bookmark';
+import Trending from '@icons/trending';
 
 import { NavButton } from '@components';
 import {

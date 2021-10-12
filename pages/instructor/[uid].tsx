@@ -3,7 +3,8 @@ import { Image, Button, Wrap } from '@chakra-ui/react';
 import useSWR from 'swr';
 
 import Page from '@layouts/page';
-import { Message, Profile } from '@components/icons';
+import Message from '@icons/message';
+import Profile from '@icons/profile';
 
 import { InstructorBox, TabsContent } from '@shared/instructor';
 import { apiClient } from '@utils';

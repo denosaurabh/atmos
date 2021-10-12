@@ -1,6 +1,6 @@
 import { Text, Flex, Input, useColorModeValue, Button } from '@chakra-ui/react';
 
-import { Search as SearchSvg } from '@components/icons';
+import SearchSvg from '@icons/search';
 import Page from '@layouts/page';
 
 import { AllQuestions } from '@shared/qa';

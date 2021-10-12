@@ -9,7 +9,7 @@ import {
   Tag,
 } from '@chakra-ui/react';
 
-import { LeftArrow } from '@components/icons';
+import LeftArrow from '@icons/leftArrow';
 import { TopLeftDataI } from '@lib/pages/course';
 
 const TopLeft = ({

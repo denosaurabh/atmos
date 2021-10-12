@@ -9,7 +9,10 @@ import {
   Wrap,
 } from '@chakra-ui/react';
 
-import { VideoPlaylist, Share, Heart } from '@components/icons';
+import VideoPlaylist from '@icons/videoPlaylist';
+import Share from '@icons/share';
+import Heart from '@icons/heart';
+
 import { Number, User } from '@components';
 
 import { useCourseBox } from '@contexts/components/courseBox';

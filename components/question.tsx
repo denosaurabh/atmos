@@ -6,14 +6,18 @@ import {
   IconButton,
   Wrap,
   useColorModeValue,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import { NotificationIcon } from "@components";
-import { Like, ChatFill, Emo } from "@components/icons";
-import { QuestionI } from "@lib/components";
+import { NotificationIcon } from '@components';
+
+import Like from '@icons/like';
+import ChatFill from '@icons/chatfill';
+import Emo from '@icons/emo';
+
+import { QuestionI } from '@lib/components';
 
 const Question = ({
-  title = "", // For no issues when rendering answers
+  title = '', // For no issues when rendering answers
   description,
   timestamp,
   from,
@@ -21,11 +25,11 @@ const Question = ({
   noLeftIcons,
   noHeading,
 }: QuestionI) => {
-  const textColor = useColorModeValue("grey-s-darkest", "white-600");
-  const svgColor = useColorModeValue("grey-s-darkest", "white-300");
-  const iconBorderColor = useColorModeValue("grey-s-dark", "white-300");
-  const borderColor = useColorModeValue("grey-o-light", "white-300");
-  const bgHoverColor = useColorModeValue("grey-s-light", "white-200");
+  const textColor = useColorModeValue('grey-s-darkest', 'white-600');
+  const svgColor = useColorModeValue('grey-s-darkest', 'white-300');
+  const iconBorderColor = useColorModeValue('grey-s-dark', 'white-300');
+  const borderColor = useColorModeValue('grey-o-light', 'white-300');
+  const bgHoverColor = useColorModeValue('grey-s-light', 'white-200');
 
   const { avatar, userId, userName } = from;
   const { seconds } = timestamp;
@@ -99,7 +103,8 @@ const Question = ({
             fontSize="2xl"
             mb={3}
             mt={2}
-            cursor="pointer">
+            cursor="pointer"
+          >
             {title}
           </Heading>
         ) : null}
@@ -109,7 +114,8 @@ const Question = ({
           fontWeight="300"
           marginTop={4}
           cursor="pointer"
-          noOfLines={4}>
+          noOfLines={4}
+        >
           {description}
         </Text>
 

@@ -14,7 +14,9 @@ import {
   Divider,
 } from '@chakra-ui/react';
 
-import { Heart, Share, Box } from '@components/icons';
+import Heart from '@icons/heart';
+import Share from '@icons/share';
+import Box from '@icons/box';
 
 const TopRight = ({ data }) => {
   return (
@@ -35,8 +37,7 @@ const TopRight = ({ data }) => {
       {data ? (
         <Stat order={3}>
           <StatNumber fontSize="3xl">
-            {/* {data.price.currencySymbol} */} $
-            {/* {data.price.value} */} 4.98
+            {/* {data.price.currencySymbol} */} ${/* {data.price.value} */} 4.98
             <Text as="sup" fontWeight="light" fontSize="sm" marginLeft={1.5}>
               {/* {data.price.currencyCode} */} usd
             </Text>

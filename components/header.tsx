@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 
 import { Categories, Search, RightBox } from '@shared/header';
-import { Hamburger } from '@components/icons';
+import Hamburger from '@icons/hamburger';
 import { HeaderI } from '@lib/components';
 
 const Header = ({ breakpointForResSidebar, paddingLeft, ui }: HeaderI) => {

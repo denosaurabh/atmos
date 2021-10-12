@@ -11,7 +11,7 @@ import {
   ListIcon,
 } from '@chakra-ui/react';
 
-import { CheckBoxChecked } from '@components/icons';
+import CheckBoxChecked from '@icons/checkboxChecked';
 import { BottomContentI } from '@lib/pages/course';
 
 const BottomContent = ({

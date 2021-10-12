@@ -16,6 +16,7 @@
       "@components": ["components/index"],
       "@components/*": ["components/*"],
       "@theme/*": ["theme/*"],
+      "@icons/*": ["icons/*"],
       "@layouts/*": ["layouts/*"],
       "@contexts/*": ["contexts/*"],
       "@contexts": ["contexts/index"],

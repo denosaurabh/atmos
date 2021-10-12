@@ -14,7 +14,8 @@ import {
   Flex,
 } from '@chakra-ui/react';
 
-import { RightArrow, LeftArrow } from '@components/icons';
+import RightArrow from '@icons/rightArrow';
+import LeftArrow from '@icons/leftArrow';
 
 const MotionBox = motion(Box);
 

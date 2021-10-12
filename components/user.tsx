@@ -1,5 +1,5 @@
 import { Flex, Avatar, Text } from '@chakra-ui/react';
-import { Verified } from '@components/icons';
+import Verified from '@icons/verified';
 import { Number } from '@components';
 import { UserCompI } from '@lib/components';
 
