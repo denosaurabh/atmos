@@ -1,29 +1,31 @@
 import { Wrap, Heading } from '@chakra-ui/react';
 import { CourseBox } from '@components';
+import { CourseBoxProvider } from '@contexts/components/courseBox';
 import { CourseBoxSkeleton } from '@skeletons';
 
-import { useWishlistCourses } from '@contexts/pages/wishlist';
-
-const WishlistCourses = () => {
-  const { data, loading } = useWishlistCourses();
+const WishlistCourses = ({ courses }) => {
+  console.log(courses, 'wishlist courses');
 
   return (
     <Wrap spacing={8} direction="column">
-      {!loading
-        ? data.map((data, i) => <CourseBox {...data} key={i} />)
-        : [...Array(10)].map((_, i) => <CourseBoxSkeleton key={i} />)}
+      {courses
+        ? courses.map((data, i) => (
+            <CourseBoxProvider courseId={data.id} key={i}>
+              <CourseBox {...data} />
+            </CourseBoxProvider>
+          ))
+        : [...Array(2)].map((_, i) => <CourseBoxSkeleton key={i} />)}
 
-      {!loading && !data.length ? (
+      {courses && !courses?.length ? (
         <Wrap justify="center" align="center" height="auto" textAlign="center">
           <Heading
             fontWeight="medium"
-            fontSize="3xl"
+            fontSize="2xl"
             maxW="3xl"
             lineHeight="tall"
             _dark={{ color: 'white-100' }}
           >
-            Just add some Courses in your Wishlist by clicking Heart Icon in a
-            course! They will appear here.
+            Empty!
           </Heading>
         </Wrap>
       ) : null}

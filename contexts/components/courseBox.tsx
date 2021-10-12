@@ -95,7 +95,7 @@ export const CourseBoxProvider = ({ courseId, children }) => {
 
     toast({
       position: 'top',
-      title: 'Course link Copied!',
+      title: 'Course link copied!',
       status: 'success',
       duration: 4000,
       isClosable: true,

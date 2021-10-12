@@ -38,11 +38,11 @@ const CourseBox = ({
   } = useCourseBox();
 
   const onHoverStart = () => {
-    setIsHovered(true);
+    // setIsHovered(true);
   };
 
   const onHoverEnd = () => {
-    setIsHovered(false);
+    // setIsHovered(false);
   };
 
   return (
@@ -60,6 +60,17 @@ const CourseBox = ({
       onMouseLeave={onHoverEnd}
       onTouchStart={onHoverStart}
       onTouchCancel={onHoverEnd}
+      css={{
+        '.course-box__actions': {
+          opacity: 0,
+        },
+
+        '&:hover, &:active': {
+          '.course-box__actions': {
+            opacity: 1,
+          },
+        },
+      }}
     >
       <Link href={`/course/${id}`}>
         <Image
@@ -117,8 +128,9 @@ const CourseBox = ({
         </Wrap>
       </Flex>
       <Flex
+        className="course-box__actions"
         display={{ base: 'none', md: 'flex' }}
-        opacity={isHovered ? 1 : 0}
+        // opacity={isHovered ? 1 : 0}
         marginLeft="auto"
         paddingX={2}
         paddingY={2}

@@ -57,6 +57,22 @@ export const UserContextProvider = (props) => {
         setSession(session);
         setAuthUser(session?.user ?? null);
 
+        console.log(event);
+
+        switch (event) {
+          case 'SIGNED_IN':
+            break;
+          case 'SIGNED_OUT':
+            setUser(null);
+            setAuthUser(null);
+            setSession(null);
+            setUserLoaded(true);
+
+            break;
+          case 'USER_UPDATED':
+            break;
+        }
+
         await setServerSession(event, session);
 
         //  headers: new Headers({ 'Content-Type': 'application/json' }),
