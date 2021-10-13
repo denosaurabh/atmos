@@ -1,14 +1,40 @@
 import { memo } from 'react';
+import dynamic from 'next/dynamic';
+
 import { Flex, Portal, useColorModeValue } from '@chakra-ui/react';
 
-import {
-  Header,
-  FeedsSection,
-  InsightsSection,
-  CourseLearningSection,
-  TopInstructorsSection,
-  BottomSection,
-} from '@shared/sidebar';
+// import {
+//   Header,
+//   FeedsSection,
+//   InsightsSection,
+//   CourseLearningSection,
+//   TopInstructorsSection,
+//   BottomSection,
+// } from '@shared/sidebar';
+
+const Header = dynamic(() => import('@shared/sidebar/header'));
+
+// const {
+//   FeedsSection,
+//   InsightsSection,
+//   CourseLearningSection,
+//   TopInstructorsSection,
+// } = dynamic(() => import('@shared/sidebar/sections').then((mod) => mod));
+
+const FeedsSection = dynamic(() =>
+  import('@shared/sidebar/sections').then((mod) => mod.FeedsSection)
+);
+const InsightsSection = dynamic(() =>
+  import('@shared/sidebar/sections').then((mod) => mod.InsightsSection)
+);
+const CourseLearningSection = dynamic(() =>
+  import('@shared/sidebar/sections').then((mod) => mod.CourseLearningSection)
+);
+const TopInstructorsSection = dynamic(() =>
+  import('@shared/sidebar/sections').then((mod) => mod.TopInstructorsSection)
+);
+const BottomSection = dynamic(() => import('@shared/sidebar/bottomSection'));
+
 import { SidebarI } from '@lib/components';
 import { useAuth } from '@contexts/useAuth';
 

@@ -1,7 +1,7 @@
 import { Wrap, Text } from '@chakra-ui/react';
 import useSWR from 'swr';
 
-import { User } from '@components';
+import User from '@components/user';
 import { UserMDSkeleton } from '@skeletons';
 
 const TopInstructors = () => {

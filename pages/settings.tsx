@@ -1,4 +1,5 @@
-import { PageHeading, MenuTab } from '@components';
+import MenuTab from '@components/menuTab';
+import PageHeading from '@components/pageHeading';
 
 import { Profile } from '@shared/settings';
 

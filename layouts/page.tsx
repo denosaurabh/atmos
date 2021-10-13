@@ -1,5 +1,6 @@
 import { memo, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import {
   Flex,
   Box,
@@ -8,8 +9,16 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 
-import Header from '@components/header';
-import Sidebar from '@components/sidebar';
+// import Header from '@components/header';
+// import Sidebar from '@components/sidebar';
+
+const Header = dynamic(() => import('@components/header'), {
+  ssr: true,
+});
+
+const Sidebar = dynamic(() => import('@components/sidebar'), {
+  ssr: true,
+});
 
 import { PageI } from '@lib/layouts';
 import { useUI } from '@contexts/useUI';
@@ -95,9 +104,4 @@ const Page = ({ children, mainContentPadding }: PageI) => {
   );
 };
 
-export default memo(Page, (prevProps, nextProps) => {
-  return (
-    prevProps.children === nextProps.children &&
-    prevProps.mainContentPadding === nextProps.mainContentPadding
-  );
-});
+export default memo(Page);

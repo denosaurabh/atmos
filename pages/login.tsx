@@ -11,7 +11,7 @@ import {
   useToast,
   useColorMode,
 } from '@chakra-ui/react';
-import { Input } from '@components';
+import Input from '@components/input';
 import { supabase } from '@supabase/client';
 
 const Login = () => {

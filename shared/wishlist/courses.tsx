@@ -1,5 +1,5 @@
 import { Wrap, Heading } from '@chakra-ui/react';
-import { CourseBox } from '@components';
+import CourseBox from '@components/courseBox';
 import { CourseBoxProvider } from '@contexts/components/courseBox';
 import { CourseBoxSkeleton } from '@skeletons';
 

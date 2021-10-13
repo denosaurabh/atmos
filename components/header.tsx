@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import dynamic from 'next/dynamic';
 import {
   Flex,
   CloseButton,
@@ -7,7 +8,13 @@ import {
   Portal,
 } from '@chakra-ui/react';
 
-import { Categories, Search, RightBox } from '@shared/header';
+// import { Categories, Search, RightBox } from '@shared/header';
+
+const Categories = dynamic(() => import('@shared/header/categories'));
+
+const Search = dynamic(() => import('@shared/header/search'));
+const RightBox = dynamic(() => import('@shared/header/rightBox'));
+
 import Hamburger from '@icons/hamburger';
 import { HeaderI } from '@lib/components';
 

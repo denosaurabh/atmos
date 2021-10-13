@@ -1,6 +1,6 @@
 import { Flex, Avatar, Text } from '@chakra-ui/react';
 import Verified from '@icons/verified';
-import { Number } from '@components';
+import Number from '@components/number';
 import { UserCompI } from '@lib/components';
 
 const User = ({

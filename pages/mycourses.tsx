@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { Wrap } from '@chakra-ui/react';
 
 import { MyCourseBoxSkeleton } from '@skeletons';
-import { PageHeading, MyCourseBox } from '@components';
+
+import MyCourseBox from '@components/myCourseBox';
+import PageHeading from '@components/pageHeading';
 
 import { useAuth } from '@contexts/useAuth';
-import { supabase } from '@supabase/client';
 
 const MyCourses = () => {
   const { user, userLoaded } = useAuth();

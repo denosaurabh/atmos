@@ -1,6 +1,6 @@
 import { Avatar, Button, Flex, Text } from '@chakra-ui/react';
 
-import { Input } from '@components';
+import Input from '@components/input';
 import { useAuth } from '@contexts/useAuth';
 
 const Profile = () => {

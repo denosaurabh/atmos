@@ -1,4 +1,4 @@
-import { MenuTab } from "@components";
+import MenuTab from "@components/menuTab";
 import { BreakpointsEnum } from "@lib/ui";
 
 const TabsContent = () => {

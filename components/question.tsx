@@ -8,7 +8,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-import { NotificationIcon } from '@components';
+import NotificationIcon from '@components/notificationIcon';
 
 import Like from '@icons/like';
 import ChatFill from '@icons/chatfill';

@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { SnapList, SnapItem } from 'react-snaplist-carousel';
 import useSWR from 'swr';
 
-import { CourseMainBox } from '@components';
+import CourseMainBox from '@components/courseMainBox';
 import { CourseMainBoxskeleton } from '@skeletons';
 
 const Carousal = () => {

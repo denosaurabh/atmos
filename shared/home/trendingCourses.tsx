@@ -2,7 +2,8 @@ import { memo } from 'react';
 import { Flex, Wrap, Button, Select, Text } from '@chakra-ui/react';
 import useSWR from 'swr';
 
-import { CourseBox } from '@components';
+import CourseBox from '@components/courseBox';
+
 import { CourseBoxSkeleton } from '@skeletons';
 import { CourseBoxProvider } from '@contexts/components/courseBox';
 

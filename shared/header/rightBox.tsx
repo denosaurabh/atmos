@@ -44,6 +44,7 @@ const RightBox: React.FC = () => {
         fontSize="sm"
         fontWeight="light"
         display={{ base: 'none', ml: 'unset' }}
+        _hover={{ cursor: 'pointer' }}
       >
         Become an Instructor
       </Text>

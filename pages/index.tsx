@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import { Flex } from '@chakra-ui/react';
 
-import { PageHeading } from '@components';
+import PageHeading from '@components/pageHeading';
 
 import Carousal from '@shared/home/carousal';
 

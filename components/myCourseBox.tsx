@@ -1,5 +1,5 @@
 import { Flex, Image, Heading, Button } from "@chakra-ui/react";
-import { Number } from "@components";
+import Number from '@components/number';
 import { MyCourseBoxI } from "@lib/components";
 
 const MyCourseBox = ({ title, image }: MyCourseBoxI) => {

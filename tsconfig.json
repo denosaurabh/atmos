@@ -13,7 +13,6 @@
     "strict": true,
     "paths": {
       "@svg/*": ["assets/svg/*"],
-      "@components": ["components/index"],
       "@components/*": ["components/*"],
       "@theme/*": ["theme/*"],
       "@icons/*": ["icons/*"],

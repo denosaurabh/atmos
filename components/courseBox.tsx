@@ -13,7 +13,8 @@ import VideoPlaylist from '@icons/videoPlaylist';
 import Share from '@icons/share';
 import Heart from '@icons/heart';
 
-import { Number, User } from '@components';
+import Number from '@components/number';
+import User from '@components/user';
 
 import { useCourseBox } from '@contexts/components/courseBox';
 
@@ -35,8 +36,8 @@ const CourseBox = ({
   const {
     onShareClick,
     onWishlistClick,
-    setIsHovered,
-    isHovered,
+    // setIsHovered,
+    // isHovered,
     isWishlisted,
   } = useCourseBox();
 

@@ -13,7 +13,7 @@ import {
   useColorMode,
   Checkbox,
 } from '@chakra-ui/react';
-import { Input } from '@components';
+import Input from '@components/input';
 
 import { useAuth } from '@contexts/useAuth';
 

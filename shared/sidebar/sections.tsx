@@ -13,7 +13,8 @@ import List from '@icons/list';
 import Bookmark from '@icons/bookmark';
 import Trending from '@icons/trending';
 
-import { NavButton } from '@components';
+import NavButton from '@components/navButton';
+
 import {
   FeedsSectionI,
   SidebarExtended,

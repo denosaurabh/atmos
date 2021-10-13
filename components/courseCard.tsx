@@ -1,5 +1,8 @@
 import { Flex, Heading, Tag, Image, useColorModeValue } from '@chakra-ui/react';
-import { User, Number } from '@components';
+
+import Number from '@components/number';
+import User from '@components/user';
+
 import { CourseCardI } from '@lib/components';
 
 const CourseCard = ({

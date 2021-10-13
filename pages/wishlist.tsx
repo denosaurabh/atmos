@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { PageHeading } from '@components';
+import PageHeading from '@components/pageHeading';
 
 import { WishlistCourses } from '@shared/wishlist';
 

@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import { Category } from "@components";
+import Category from "@components/category";
 import { CategoryI } from "@lib/components";
 
 const Categories = () => {

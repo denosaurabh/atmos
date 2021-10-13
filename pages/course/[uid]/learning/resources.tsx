@@ -1,5 +1,5 @@
 import Page from '@layouts/page';
-import { PageHeading } from '@components';
+import PageHeading from '@components/pageHeading';
 
 const Resources = () => {
   return (

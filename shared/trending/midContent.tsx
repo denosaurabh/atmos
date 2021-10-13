@@ -1,5 +1,5 @@
 import { Flex, Select, Text } from '@chakra-ui/react';
-import { CourseCard } from '@components';
+import CourseCard from '@components/courseCard';
 import { CourseCardSkeleton } from '@skeletons';
 
 import useSWR from 'swr';

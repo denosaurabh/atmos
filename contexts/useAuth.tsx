@@ -52,6 +52,8 @@ export const UserContextProvider = (props) => {
     setSession(session);
     setAuthUser(session?.user ?? null);
 
+    // supabase.auth.api.refreshAccessToken
+
     const { data: authListener } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         setSession(session);

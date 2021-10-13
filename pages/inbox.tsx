@@ -1,4 +1,4 @@
-import { PageHeading } from '@components';
+import PageHeading from '@components/pageHeading';
 
 const Inbox = () => {
   return (

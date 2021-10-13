@@ -16,6 +16,9 @@ module.exports = withPlugins([withBundleAnalyzer], {
   typescript: {
     ignoreBuildErrors: true,
   },
+  images: {
+    domains: ['rcuycsnhiamtyjpdfnzp.supabase.in'],
+  },
   webpack: (
     config
     // { dev, isServer }

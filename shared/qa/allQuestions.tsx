@@ -1,5 +1,5 @@
 import { Wrap } from '@chakra-ui/react';
-import { Question } from '@components';
+import Question from '@components/question';
 
 import { useQA } from '@contexts/pages/qa';
 
