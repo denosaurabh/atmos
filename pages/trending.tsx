@@ -1,6 +1,6 @@
 import { TopSection, MidContent } from '@shared/trending';
 
-const Recommanded = () => {
+const Trending = () => {
   return (
     <>
       <TopSection />
@@ -9,4 +9,4 @@ const Recommanded = () => {
   );
 };
 
-export default Recommanded;
+export default Trending;
