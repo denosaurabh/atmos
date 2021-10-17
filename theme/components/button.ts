@@ -9,7 +9,8 @@ const buttonsTheme = {
       // To be fixed in future
       _loading: {
         _hover: {
-          opacity: 0.9,
+          opacity: 0.3,
+          backgroundColor: 'primary',
         },
       },
     };
