@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Flex, Heading, Tag, Image, useColorModeValue } from '@chakra-ui/react';
 
 import Number from '@components/number';
@@ -6,6 +7,7 @@ import User from '@components/user';
 import { CourseCardI } from '@lib/components';
 
 const CourseCard = ({
+  id,
   image,
   title,
   instructor,
@@ -28,7 +30,9 @@ const CourseCard = ({
       my={7}
       _hover={{ shadow: '2xl' }}
     >
-      <Image height="45%" src={image} objectFit="cover" roundedTop="2xl" />
+      <Link href={`/course/${id}`}>
+        <Image height="45%" src={image} objectFit="cover" roundedTop="2xl" cursor="pointer" />
+      </Link>
 
       <Flex flexDirection="column" p={4}>
         <Heading fontSize="xl" fontWeight="medium" mb={5}>
@@ -53,8 +57,8 @@ const CourseCard = ({
         p={4}
         mt="auto"
       >
-        {tags.map((_, i) => (
-          <Tag key={i}>Recommanded</Tag>
+        {tags.map((taag, i) => (
+          <Tag key={i}>{taag}</Tag>
         ))}
         <Number colorScheme="secondary-s-medium">
           {`${learners_number} learners`}

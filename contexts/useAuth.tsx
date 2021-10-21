@@ -3,7 +3,6 @@ import { supabase } from '@supabase/client';
 import { User, Session, AuthChangeEvent } from '@supabase/supabase-js';
 
 import { UserI } from '@lib/user';
-import axios from 'axios';
 
 interface useAuthI {
   session: Session | null;
@@ -11,6 +10,7 @@ interface useAuthI {
   user: UserI | null;
   userLoaded: Boolean;
   signIn: () => void;
+  signinWithGoogle: () => void;
   signUpWithEmailAndPassword: (
     name: string,
     email: string,
@@ -25,6 +25,7 @@ export const UserContext = createContext<useAuthI>({
   user: null,
   userLoaded: false,
   signIn: () => {},
+  signinWithGoogle: () => {},
   signUpWithEmailAndPassword: () => {},
   signOut: () => {},
 });
@@ -131,6 +132,45 @@ export const UserContextProvider = (props) => {
     return newUser[0];
   };
 
+  const signinWithGoogle = async () => {
+    const {
+      user: authUser,
+      session: authSession,
+      error: authError,
+    } = await supabase.auth.signIn({
+      provider: 'google',
+    });
+
+    setAuthUser(authUser);
+    setSession(authSession);
+
+    if (authError) {
+      console.log(authError);
+      return new Error(authError.message);
+    }
+
+    const { data: newUser, error: newUserError } = await supabase
+      .from('users')
+      .insert([
+        {
+          email_personal: authUser?.email,
+          fullName: authUser?.id,
+          avatar: 'https://i.pravatar.cc/20',
+          verified: false,
+          authId: authUser?.id,
+        },
+      ])
+      .single();
+
+    console.log(newUser, 'login with google user');
+
+    if (newUserError) return new Error(newUserError.message);
+
+    setUser(newUser[0]);
+
+    return user;
+  };
+
   useEffect(() => {
     if (authUser) {
       getUserFromDB(authUser.id).then((data) => {
@@ -154,6 +194,7 @@ export const UserContextProvider = (props) => {
     user,
     userLoaded,
     signIn,
+    signinWithGoogle,
     signUpWithEmailAndPassword,
     signOut,
   };

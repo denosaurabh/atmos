@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, createContext, useContext, useEffect } from 'react';
 
 export interface useUII {
   sidebarExtended: boolean;
@@ -21,18 +21,45 @@ const UIContext = createContext<useUII>({
 export const UIContextProvider: React.FC = ({ children }) => {
   const [sidebarExtended, setSidebarExtended] = useState(false);
   const [sidebarShow, setSidebarShow] = useState(false);
-  const [showCourseLearningSidebar, setShowCourseLearningSidebar] = useState(
-    false
-  );
+  const [showCourseLearningSidebar, setShowCourseLearningSidebar] =
+    useState(false);
+
+  useEffect(() => {
+    if (!window) return;
+
+    const sidebarExtendedLocal =
+      localStorage.getItem('sidebarExtended') === 'true' ? true : false;
+    const sidebarShowLocal =
+      localStorage.getItem('sidebarShow') === 'true' ? true : false;
+    const showCourseLearningSidebarLocal =
+      localStorage.getItem('showCourseLearningSidebar') === 'true'
+        ? true
+        : false;
+
+    setSidebarExtended(sidebarExtendedLocal);
+    setSidebarShow(sidebarShowLocal);
+    setShowCourseLearningSidebar(showCourseLearningSidebarLocal);
+  }, []);
 
   const value = {
     sidebarExtended,
     sidebarShow,
     showCourseLearningSidebar,
-    setSidebarExtended: (boolean: boolean) => setSidebarExtended(boolean),
-    setSidebarShow: (boolean: boolean) => setSidebarShow(boolean),
-    setShowCourseLearningSidebar: (boolean: boolean) =>
-      setShowCourseLearningSidebar(boolean),
+    setSidebarExtended: (boolean: boolean) => {
+      localStorage.setItem('sidebarExtended', `${boolean}`);
+      setSidebarExtended(boolean);
+    },
+    setSidebarShow: (boolean: boolean) => {
+      localStorage.setItem('sidebarShow', `${boolean}`);
+      setSidebarShow(boolean);
+    },
+    setShowCourseLearningSidebar: (boolean: boolean) => {
+      localStorage.setItem(
+        'showCourseLearningSidebar',
+        `${boolean}`
+      );
+      setShowCourseLearningSidebar(boolean);
+    },
   };
 
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;

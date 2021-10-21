@@ -13,8 +13,11 @@ import {
 } from '@chakra-ui/react';
 import Input from '@components/input';
 import { supabase } from '@supabase/client';
+import { useAuth } from '@contexts/useAuth';
 
 const Login = () => {
+  const { signinWithGoogle } = useAuth();
+
   const { colorMode, toggleColorMode } = useColorMode();
   if (colorMode === 'dark') toggleColorMode();
 
@@ -68,9 +71,8 @@ const Login = () => {
 
   const onGoogleSignInClick = async () => {
     try {
-      await supabase.auth.signIn({ provider: 'google' });
-
-      router.push('/');
+      // await supabase.auth.signIn({ provider: 'google' });
+      await signinWithGoogle();
     } catch (err) {
       toast({
         position: 'top',
